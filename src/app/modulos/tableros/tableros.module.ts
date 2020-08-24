@@ -6,7 +6,8 @@ import { BarchartComponent } from './barchart/barchart.component';
 import { TablerosRoutingModule } from './tableros.routes';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,8 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
     TablerosComponent, 
     BarchartComponent],
   imports: [
+    FormsModule,
+    NgSelectModule,
     CommonModule,
-    ChartsModule,
+    ChartsModule,   
     TablerosRoutingModule
   ]
 })

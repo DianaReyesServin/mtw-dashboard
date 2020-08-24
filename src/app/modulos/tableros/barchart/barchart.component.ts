@@ -3,6 +3,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
 import { NorthwindService } from 'src/app/services/northwind.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-barchart',
@@ -32,7 +33,12 @@ export class BarchartComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  constructor(private northSvc: NorthwindService) { }
+  constructor(private northSvc: NorthwindService) { 
+    this.fetchDimensions();
+  }
+
+  dimension$: Observable<any>;
+  dimensionSelected: any = {};
 
   ngOnInit() {
     this.northSvc.getDataTopN(5, '[Dim Cliente Nombre]', 'DESC').subscribe((result: any) =>{
@@ -44,6 +50,18 @@ export class BarchartComponent implements OnInit {
         data: result.medicion, label: 'Top 5 Clientes'
       }];
     });
+  }
+
+  dimension_OnChange($event){
+
+  }
+
+  dimension_OnClear($event){
+
+  }
+
+  fetchDimensions(){
+    this.dimension$ = this.northSvc.getDimensions();
   }
 
   // events

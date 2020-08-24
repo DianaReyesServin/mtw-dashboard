@@ -1,5 +1,20 @@
 <div>
         <div>
+          <ng-select
+            [items]="dimension$ | async"
+            [sercheable]="true"
+            bidLabel="descripcion"
+            placeholder="Dimension"
+            [clearable]="true"
+            (change)="dimension_OnChange($event)"
+            (clear)="dimension_OnClear($event)"
+            [(ngModel)]="dimensionSelected">
+          </ng-select>
+
+          <pre>
+            {{dimensionSelected | json}}
+          </pre>
+
           <div style="display: block">
             <canvas baseChart
               [datasets]="barChartData"

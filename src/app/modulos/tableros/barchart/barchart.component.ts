@@ -41,15 +41,13 @@ export class BarchartComponent implements OnInit {
   dimensionSelected: any = {};
 
   ngOnInit() {
-    this.northSvc.getDataTopN(5, '[Dim Cliente Nombre]', 'DESC').subscribe((result: any) =>{
-      console.log("llamada a api", result);
+    this.dimensionSelected = {
+      codigo: 2,
+      descripcion: "Producto",
+      valor: "[Dim Producto].[Dim Producto Nombre]"
 
-      this.barChartLabels = result.dimension;
-
-      this.barChartData = [{
-        data: result.medicion, label: 'Top 5 Clientes'
-      }];
-    });
+    };
+    this.fetchCharts(this.dimensionSelected.valor);
   }
 
   dimension_OnChange($event){
@@ -58,6 +56,18 @@ export class BarchartComponent implements OnInit {
 
   dimension_OnClear($event){
 
+  }
+
+  fetchCharts(dimensionValue: string){
+    this.northSvc.getDataTopN(3, dimensionValue, 'ASC').subscribe((result: any) =>{
+      console.log("llamada a api", result);
+
+      this.barChartLabels = result.dimension;
+
+      this.barChartData = [{
+        data: result.medicion, label: 'Top 5 Clientes'
+      }];
+    });
   }
 
   fetchDimensions(){

@@ -15,13 +15,8 @@ export class NorthwindService {
   getDataTopN(topN: number, dimension:string, order:string){
     return this.http.get(`${URL_BASE}/TopN/${topN}/${dimension}/${order}`);
   }
-  
+
   getDimensions(){
-     return this.http.get('assets/json/dimensions.json').pipe(map((result:any)=>
-     {
-       console.log("Llamada json", result);
-       return result
-     })
-     );
+     return this.http.get('assets/json/dimensions.json');
    }
 }

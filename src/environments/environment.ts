@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   ENDPOINTS:{
     NORTHWIND:{
-      urlBase: 'http://192.168.1.72/API.MTW301/api/northwind/v1'
+      urlBase: 'http://192.168.0.23/API.MTW301/api/northwind/v1'
     }
   }
 };
